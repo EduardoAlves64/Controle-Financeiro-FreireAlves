@@ -333,3 +333,32 @@ s3_region = "env(S3_REGION)"
 s3_access_key = "env(S3_ACCESS_KEY)"
 # Configures AWS_SECRET_ACCESS_KEY for S3 bucket
 s3_secret_key = "env(S3_SECRET_KEY)"
+
+# Ajustes só do projeto na nuvem (aplicados com `supabase config push`)
+[remotes.production]
+project_id = "lbmodahkrqlzgdpvbmax"
+
+[remotes.production.auth]
+site_url = "https://financas-freire-alves.vercel.app"
+additional_redirect_urls = [
+  "https://financas-freire-alves.vercel.app/**",
+  "https://financas-freire-alves-edualvesatitude-2323.vercel.app/**",
+  "https://financas-*-edualvesatitude-2323.vercel.app/**",
+]
+minimum_password_length = 8
+
+[remotes.production.auth.email]
+enable_confirmations = true
+max_frequency = "1m0s"
+otp_length = 8
+
+[remotes.production.auth.mfa.totp]
+enroll_enabled = true
+verify_enabled = true
+
+[remotes.production.auth.sms]
+enable_confirmations = true
+
+[remotes.production.db.pooler]
+default_pool_size = 15
+max_client_conn = 200
